@@ -1,0 +1,53 @@
+<div class="container">
+    <mat-accordion *ngIf="cats ">
+        <mat-expansion-panel *ngFor="let cat of cats">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{cat.name}}
+                </mat-panel-title>
+                <mat-panel-description>
+
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+                <form class="d-flex flex-column">
+                    <mat-form-field appearance="fill">
+                        <mat-label> Имя</mat-label>
+                        <input type="text" name="name" matInput [(ngModel)]="cat.name">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="sex">
+                        <mat-label>Пол</mat-label>
+                        <mat-select [(ngModel)]="cat.sex">
+                            <mat-option value="0">{{sex[0]}}</mat-option>
+                            <mat-option value="1">{{sex[1]}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label> Порода </mat-label>
+                        <input matInput name="breed" [(ngModel)]="cat.breed">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label> Окрас </mat-label>
+                        <input matInput name="colour" [(ngModel)]="cat.colour">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Дата Рождения</mat-label>
+                        <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="cat.date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label> Коментарий </mat-label>
+                        <textarea matInput name="comment" [(ngModel)]="cat.comment"></textarea>
+                    </mat-form-field>
+                    <div class="d-flex justify-content-center">
+                        <button mat-raised-button color="primary" (click)="save(cat)">Сохранить</button>
+                        <button mat-raised-button color="warn" (click)="remove(cat)">Удалить</button>
+                    </div>
+                </form>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <button mat-raised-button color="primary" (click)="addNew()">Добавить</button>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-login',
@@ -10,15 +11,28 @@ export class LoginComponent {
   login: string;
   password: string;
 
-  constructor( public adminService: AdminService){}
+  constructor(
+    public adminService: AdminService,
+    public router: Router) { 
+      this.redirect();
+    }
 
-  singIn(){
+  singIn() {
     // this.adminService.logout();
     console.log(this.login, this.password)
-    this.adminService.login(this.login, this.password);
-    if(localStorage.getItem('silverFlameToken') || localStorage.getItem('silverFlameToken')!==null){
-      console.log('welcome')
+    const token = this.adminService.login(this.login, this.password);
+    if (token) {
+      this.redirect();
+    }
+
   }
+
+  redirect() {
+    if (localStorage.getItem('silverFlameToken') || localStorage.getItem('silverFlameToken') !== null) {
+      console.log('welcome');
+      this.router.navigate(['admin/dashboard']);
+    }
+
   }
-  
+
 }

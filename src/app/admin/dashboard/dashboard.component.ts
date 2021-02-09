@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { asapScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent {
 
-  login: string;
-  password: string;
 
-  constructor(){
+  constructor(
+    public db: AngularFirestore,
+    public cdr: ChangeDetectorRef) {
   }
-  
+
+
 }

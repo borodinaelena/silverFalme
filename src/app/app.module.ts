@@ -11,6 +11,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase, 'silver-flame-cattery'),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    FormsModule 
     // MatInputModule,
     // MatFormFieldModule,
     // FormsModule

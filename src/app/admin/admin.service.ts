@@ -28,7 +28,7 @@ export class AdminService {
             });
     }
 
-    login(email: string, password: string) {
+    login(email: string, password: string): string {
         console.log('login')
         if(localStorage.getItem('silverFlameToken') || localStorage.getItem('silverFlameToken')!==null){
             console.log(localStorage.getItem('silverFlameToken'))
@@ -40,9 +40,11 @@ export class AdminService {
             .then(value => {
                 console.log('Nice, it worked!', value);
                 localStorage.setItem('silverFlameToken', value.user.refreshToken)
+                return value.user.refreshToken
             })
             .catch(err => {
                 console.log('Something went wrong:', err.message);
+                return;
             });
     }
 
